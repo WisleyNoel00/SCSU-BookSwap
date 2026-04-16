@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SCSU BookSwap</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!-- ═══════════════════════════════════════════ -->
+<!-- WELCOME PAGE -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="page active" id="page-welcome">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">📚 Southern Connecticut State University</div>
+    <h1 class="hero-title">SCSU <span class="accent">Book</span>Swap</h1>
+    <p class="hero-subtitle">The student marketplace for textbooks, course materials, and academic community — built for Owls, by Owls.</p>
+    <div class="hero-ctas">
+      <button class="btn-primary" onclick="showPage('page-register')">Create Free Account</button>
+      <button class="btn-secondary" onclick="showPage('page-login')">Log In</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-num">200+</div>
+        <div class="stat-label">Active Listings</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">850+</div>
+        <div class="stat-label">Students</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">$40k</div>
+        <div class="stat-label">Saved This Year</div>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<!-- ═══════════════════════════════════════════ -->
+<!-- LOGIN PAGE -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="page" id="page-login">
+  <div class="auth-layout">
+    <div class="auth-left">
+      <div class="auth-left-content">
+        <div class="auth-brand">SCSU <span>Book</span>Swap</div>
+        <p class="auth-tagline">Your campus marketplace for textbooks, notes, and academic resources.</p>
+        <div class="auth-feature">
+          <div class="auth-feature-icon">💰</div>
+          <div class="auth-feature-text">
+            <h4>Save on Textbooks</h4>
+            <p>Buy and sell course materials at student-friendly prices</p>
+          </div>
+        </div>
+        <div class="auth-feature">
+          <div class="auth-feature-icon">🔄</div>
+          <div class="auth-feature-text">
+            <h4>Trade Freely</h4>
+            <p>Exchange books you no longer need for ones you do</p>
+          </div>
+        </div>
+        <div class="auth-feature">
+          <div class="auth-feature-icon">💬</div>
+          <div class="auth-feature-text">
+            <h4>Connect with Owls</h4>
+            <p>Discuss courses and collaborate with classmates</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="auth-right">
+      <div class="auth-form-box">
+        <h2 class="auth-form-title">Welcome back</h2>
+        <p class="auth-form-subtitle">Sign in with your SCSU credentials</p>
+        <div class="form-group">
+          <label class="form-label">SCSU Email Address</label>
+          <input class="form-input" type="email" placeholder="yourname@southernct.edu">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input class="form-input" type="password" placeholder="Enter your password">
+        </div>
+        <div class="forgot-link">Forgot password?</div>
+        <button class="btn-form" onclick="showPage('page-listings')">Log In</button>
+        <p class="auth-divider">Don't have an account? <a onclick="showPage('page-register')">Sign up</a></p>
+        <p class="auth-divider" style="margin-top:12px"><a onclick="showPage('page-welcome')" style="color:var(--gray-500)">← Back to home</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<!-- ═══════════════════════════════════════════ -->
+<!-- REGISTER PAGE -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="page" id="page-register">
+  <div class="auth-layout">
+    <div class="auth-left">
+      <div class="auth-left-content">
+        <div class="auth-brand">SCSU <span>Book</span>Swap</div>
+        <p class="auth-tagline">Join hundreds of SCSU students already saving on textbooks and course materials.</p>
+        <div class="auth-feature">
+          <div class="auth-feature-icon">🦉</div>
+          <div class="auth-feature-text">
+            <h4>SCSU Students Only</h4>
+            <p>Verified community — you must have a @southernct.edu email</p>
+          </div>
+        </div>
+        <div class="auth-feature">
+          <div class="auth-feature-icon">🔒</div>
+          <div class="auth-feature-text">
+            <h4>Safe & Secure</h4>
+            <p>Verified student accounts and campus-based transactions</p>
+          </div>
+        </div>
+        <div class="auth-feature">
+          <div class="auth-feature-icon">⚡</div>
+          <div class="auth-feature-text">
+            <h4>Quick Setup</h4>
+            <p>Register in under 2 minutes and start browsing listings</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="auth-right">
+      <div class="auth-form-box">
+        <h2 class="auth-form-title">Create account</h2>
+        <p class="auth-form-subtitle">Join the SCSU BookSwap community</p>
+        <div class="form-group">
+          <label class="form-label">Full Name</label>
+          <input class="form-input" type="text" placeholder="First and last name">
+        </div>
+        <div class="form-group">
+          <label class="form-label">SCSU Email Address</label>
+          <input class="form-input" type="email" placeholder="yourname@southernct.edu">
+          <p class="form-hint">Must be a valid @southernct.edu address</p>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Username</label>
+          <input class="form-input" type="text" placeholder="Choose a username">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input class="form-input" type="password" placeholder="Create a strong password">
+        </div>
+        <button class="btn-form" onclick="showPage('page-listings')">Create Account</button>
+        <p class="auth-divider">Already have an account? <a onclick="showPage('page-login')">Sign in</a></p>
+        <p class="auth-divider" style="margin-top:12px"><a onclick="showPage('page-welcome')" style="color:var(--gray-500)">← Back to home</a></p>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<!-- ═══════════════════════════════════════════ -->
+<!-- LISTINGS PAGE -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="page" id="page-listings">
+  <nav>
+    <div class="nav-logo" onclick="showPage('page-listings')">
+      SCSU <span>Book</span>Swap
+      <span class="nav-logo-badge">BETA</span>
+    </div>
+    <div class="nav-links">
+      <button class="nav-btn text-only">Threads</button>
+      <button class="nav-btn text-only" onclick="showPage('page-listings')">Listings</button>
+      <button class="nav-btn ghost">👤 My Account</button>
+      <button class="nav-btn gold" onclick="showPage('page-create-listing')">+ New Listing</button>
+    </div>
+  </nav>
+  <div class="listings-header">
+    <div class="listings-header-top">
+      <div>
+        <h1>Book Listings</h1>
+        <p>Find course materials from fellow SCSU students</p>
+      </div>
+    </div>
+    <div class="listings-tabs">
+      <button class="tab active">All Listings</button>
+      <button class="tab">For Sale</button>
+      <button class="tab">For Trade</button>
+      <button class="tab">Auction</button>
+    </div>
+  </div>
+  <div class="listings-body">
+    <div class="listings-controls">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" placeholder="Search by title, author, ISBN, course...">
+      </div>
+      <select class="filter-select">
+        <option>All Departments</option>
+        <option>Computer Science</option>
+        <option>Business</option>
+        <option>Nursing</option>
+        <option>Engineering</option>
+        <option>Psychology</option>
+      </select>
+      <select class="filter-select">
+        <option>Any Condition</option>
+        <option>Like New</option>
+        <option>Good</option>
+        <option>Fair</option>
+      </select>
+      <button class="btn-create-listing" onclick="showPage('page-create-listing')">+ Create Listing</button>
+    </div>
+    <div class="listings-grid">
+      <div class="listing-card">
+        <div class="listing-card-img">📘<span class="listing-badge">For Sale</span></div>
+        <div class="listing-card-body">
+          <div class="listing-card-title">Introduction to Algorithms</div>
+          <div class="listing-card-author">Cormen, Leiserson, Rivest — 4th Ed.</div>
+          <div class="listing-card-footer">
+            <div class="listing-price">$38</div>
+            <span class="listing-condition cond-good">Good</span>
+          </div>
+          <div class="listing-seller">📍 On campus · Posted by j.brennan</div>
+        </div>
+      </div>
+      <div class="listing-card">
+        <div class="listing-card-img" style="background:linear-gradient(135deg,#6B2D8B,#9C4DB8)">📗<span class="listing-badge" style="background:#e3f2fd;color:#003DA5">For Trade</span></div>
+        <div class="listing-card-body">
+          <div class="listing-card-title">Fundamentals of Nursing</div>
+          <div class="listing-card-author">Taylor, Lynn, Bartlett — 9th Ed.</div>
+          <div class="listing-card-footer">
+            <div class="listing-price">Trade</div>
+            <span class="listing-condition cond-new">Like New</span>
+          </div>
+          <div class="listing-seller">📍 Off campus · Posted by t.eng</div>
+        </div>
+      </div>
+      <div class="listing-card">
+        <div class="listing-card-img" style="background:linear-gradient(135deg,#1a5c38,#2e7d32)">📙<span class="listing-badge" style="background:#fff3e0;color:#e65100">Auction</span></div>
+        <div class="listing-card-body">
+          <div class="listing-card-title">Business Communication Today</div>
+          <div class="listing-card-author">Bovée & Thill — 15th Ed.</div>
+          <div class="listing-card-footer">
+            <div class="listing-price">$12 bid</div>
+            <span class="listing-condition cond-fair">Fair</span>
+          </div>
+          <div class="listing-seller">🕐 2 days left · Posted by o.marin</div>
+        </div>
+      </div>
+      <div class="listing-card">
+        <div class="listing-card-img" style="background:linear-gradient(135deg,#b71c1c,#e53935)">📕<span class="listing-badge">For Sale</span></div>
+        <div class="listing-card-body">
+          <div class="listing-card-title">Psychology: Themes & Variations</div>
+          <div class="listing-card-author">Weiten — 10th Ed.</div>
+          <div class="listing-card-footer">
+            <div class="listing-price">$25</div>
+            <span class="listing-condition cond-good">Good</span>
+          </div>
+          <div class="listing-seller">📍 On campus · Posted by a.flores</div>
+        </div>
+      </div>
+      <div class="listing-card">
+        <div class="listing-card-img" style="background:linear-gradient(135deg,#004d40,#00796b)">📒<span class="listing-badge" style="background:#e3f2fd;color:#003DA5">For Trade</span></div>
+        <div class="listing-card-body">
+          <div class="listing-card-title">Calculus: Early Transcendentals</div>
+          <div class="listing-card-author">Stewart — 9th Ed.</div>
+          <div class="listing-card-footer">
+            <div class="listing-price">Trade</div>
+            <span class="listing-condition cond-new">Like New</span>
+          </div>
+          <div class="listing-seller">📍 On campus · Posted by a.frye</div>
+        </div>
+      </div>
+      <div class="listing-card">
+        <div class="listing-card-img" style="background:linear-gradient(135deg,#4a148c,#7b1fa2)">📓<span class="listing-badge">For Sale</span></div>
+        <div class="listing-card-body">
+          <div class="listing-card-title">Principles of Marketing</div>
+          <div class="listing-card-author">Kotler & Armstrong — 18th Ed.</div>
+          <div class="listing-card-footer">
+            <div class="listing-price">$30</div>
+            <span class="listing-condition cond-fair">Fair</span>
+          </div>
+          <div class="listing-seller">📍 Off campus · Posted by s.chen</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<!-- ═══════════════════════════════════════════ -->
+<!-- CREATE LISTING PAGE -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="page" id="page-create-listing">
+  <nav>
+    <div class="nav-logo" onclick="showPage('page-listings')">
+      SCSU <span>Book</span>Swap
+      <span class="nav-logo-badge">BETA</span>
+    </div>
+    <div class="nav-links">
+      <button class="nav-btn text-only">Threads</button>
+      <button class="nav-btn text-only" onclick="showPage('page-listings')">Listings</button>
+      <button class="nav-btn ghost">👤 My Account</button>
+    </div>
+  </nav>
+  <div class="create-listing-body">
+    <div class="create-form-container">
+      <div class="create-form-header">
+        <h1>Create a Listing</h1>
+        <p>List your course materials for sale, trade, or auction</p>
+      </div>
+      <div class="form-card">
+ 
+        <div class="form-section-title">Listing Type</div>
+        <div class="listing-type-toggle">
+          <div class="type-option selected" onclick="selectType(this)">
+            <div class="type-option-icon">🏷️</div>
+            <div class="type-option-label">Fixed Price</div>
+          </div>
+          <div class="type-option" onclick="selectType(this)">
+            <div class="type-option-icon">🔄</div>
+            <div class="type-option-label">Trade / Exchange</div>
+          </div>
+          <div class="type-option" onclick="selectType(this)">
+            <div class="type-option-icon">🔨</div>
+            <div class="type-option-label">Auction</div>
+          </div>
+        </div>
+ 
+        <div class="form-section-title">Book Details</div>
+        <div class="form-group">
+          <label class="form-label">Book Title *</label>
+          <input class="form-input" type="text" placeholder="e.g. Introduction to Algorithms">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Author(s) *</label>
+            <input class="form-input" type="text" placeholder="e.g. Cormen et al.">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Edition</label>
+            <input class="form-input" type="text" placeholder="e.g. 4th Edition">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">ISBN</label>
+            <input class="form-input" type="text" placeholder="13-digit ISBN">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Department / Course</label>
+            <select class="form-select">
+              <option value="">Select department...</option>
+              <option>Computer Science</option>
+              <option>Business</option>
+              <option>Nursing</option>
+              <option>Engineering</option>
+              <option>Psychology</option>
+              <option>Mathematics</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+ 
+        <div class="form-section-title">Condition & Pricing</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Book Condition *</label>
+            <select class="form-select">
+              <option>Like New</option>
+              <option>Good</option>
+              <option>Fair</option>
+              <option>Poor</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Asking Price ($)</label>
+            <input class="form-input" type="number" placeholder="0.00" min="0" step="0.01">
+          </div>
+        </div>
+ 
+        <div class="form-section-title">Description & Location</div>
+        <div class="form-group">
+          <label class="form-label">Description</label>
+          <textarea class="form-textarea" placeholder="Describe the book's condition, any highlights or notes, included materials, etc."></textarea>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Transaction Location</label>
+            <select class="form-select">
+              <option>On Campus</option>
+              <option>Off Campus</option>
+              <option>Shipping Available</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Specific Location (optional)</label>
+            <input class="form-input" type="text" placeholder="e.g. Buley Library, Adanti Hall...">
+          </div>
+        </div>
+ 
+        <div class="form-section-title">Photos</div>
+        <div class="upload-zone">
+          <div class="upload-zone-icon">📷</div>
+          <div class="upload-zone-text"><strong>Click to upload</strong> or drag & drop<br>PNG, JPG up to 10MB · Up to 5 photos</div>
+        </div>
+ 
+        <div class="form-actions">
+          <button class="btn-cancel" onclick="showPage('page-listings')">Cancel</button>
+          <button class="btn-submit" onclick="submitListing()">Publish Listing</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<!-- Toast -->
+<div class="toast" id="toast">✅ Listing published successfully!</div>
+ 
+<script>
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    window.scrollTo(0, 0);
+  }
+ 
+  function selectType(el) {
+    document.querySelectorAll('.type-option').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+  }
+ 
+  function submitListing() {
+    const toast = document.getElementById('toast');
+    toast.style.display = 'block';
+    setTimeout(() => {
+      toast.style.display = 'none';
+      showPage('page-listings');
+    }, 2000);
+  }
+ 
+  // Tab switching
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', function() {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
+ 
