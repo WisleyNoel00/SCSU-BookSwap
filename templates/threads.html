@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block title %}OwlSwap — Threads{% endblock %}
- 
+
 {% block content %}
 <div class="marketplace-layout">
- 
+
   <aside class="sidebar">
     <div class="sidebar-section">Browse</div>
     <a href="{{ url_for('marketplace') }}" class="sidebar-item">Marketplace</a>
@@ -16,7 +16,7 @@
       </a>
     </div>
   </aside>
- 
+
   <main class="main-content">
     <div class="main-header">
       <span class="main-title">Discussion Threads</span>
@@ -24,7 +24,7 @@
         <button class="btn-blue">+ New Thread</button>
       </a>
     </div>
- 
+
     {% for thread in threads %}
       <a href="{{ url_for('thread', thread_id=thread.id) }}" style="text-decoration:none">
         <div class="post" style="margin-bottom:10px;cursor:pointer;transition:box-shadow 0.2s;"
@@ -44,6 +44,6 @@
       </p>
     {% endfor %}
   </main>
- 
+
 </div>
 {% endblock %}

@@ -1,18 +1,15 @@
-New thread · HTML
-Copy
-
 {% extends "base.html" %}
 {% block title %}OwlSwap — New Thread{% endblock %}
- 
+
 {% block content %}
 <div class="auth-page">
   <div class="auth-card" style="max-width:460px">
- 
+
     <div class="auth-logo">
       <div class="auth-logo-icon">💬</div>
       <div class="auth-logo-text">New Thread</div>
     </div>
- 
+
     <form method="POST" action="{{ url_for('new_thread') }}">
       <div class="field">
         <label>Thread Title</label>
@@ -27,16 +24,16 @@ Copy
         <textarea name="body" required
           style="width:100%;border:1px solid #cdd4e0;border-radius:6px;padding:10px 12px;
                  font-size:13px;font-family:'DM Sans',sans-serif;min-height:100px;resize:vertical;
-                 outline:none;color:#1a1a1a;"
+                 outline:none;color:#1a1a1a;box-sizing:border-box;"
           placeholder="Describe what you're looking for or want to discuss..."></textarea>
       </div>
       <button type="submit" class="auth-submit">Post Thread</button>
     </form>
- 
+
     <div class="auth-footer" style="margin-top:14px">
       <a href="{{ url_for('threads') }}">← Back to Threads</a>
     </div>
- 
+
   </div>
 </div>
 {% endblock %}

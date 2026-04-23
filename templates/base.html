@@ -17,11 +17,11 @@
       {% if session.user_id %}
         <a href="{{ url_for('marketplace') }}">Browse</a>
         <a href="{{ url_for('threads') }}">Threads</a>
-        <a href="{{ url_for('new_listing') }}">My Listings</a>
+        <a href="{{ url_for('my_listings') }}">My Listings</a>
         <a href="{{ url_for('logout') }}" style="color:rgba(255,255,255,0.7);font-size:13px">Log Out</a>
         <div class="navbar-avatar">{{ session.username[:2].upper() }}</div>
       {% else %}
-        <a href="{{ url_for('auth') }}">About</a>
+        
         <a href="{{ url_for('auth') }}?tab=signup"><button class="btn-nav-signup">Sign Up</button></a>
         <a href="{{ url_for('auth') }}">Login</a>
       {% endif %}

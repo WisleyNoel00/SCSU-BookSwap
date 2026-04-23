@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 import sqlite3
-import os
 
 app = Flask(__name__)
 app.secret_key = 'owlswap-secret-key-change-in-production'
@@ -30,7 +29,7 @@ def init_db():
         category   TEXT    NOT NULL,
         type       TEXT    NOT NULL,
         price      TEXT    NOT NULL,
-        emoji      TEXT    DEFAULT '📚',
+        emoji      TEXT    DEFAULT '��',
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
         FOREIGN KEY (user_id) REFERENCES users(id))''')
     c.execute('''CREATE TABLE IF NOT EXISTS threads (
@@ -144,6 +143,17 @@ def marketplace():
                            active_category=category,
                            search=search)
 
+@app.route('/my-listings')
+@login_required
+def my_listings():
+    conn = get_db()
+    listings = conn.execute(
+        'SELECT * FROM listings WHERE user_id = ? ORDER BY created_at DESC',
+        (session['user_id'],)
+    ).fetchall()
+    conn.close()
+    return render_template('my_listings.html', listings=listings)
+
 @app.route('/listing/new', methods=['GET', 'POST'])
 @login_required
 def new_listing():
@@ -176,7 +186,7 @@ def delete_listing(listing_id):
         conn.execute('DELETE FROM listings WHERE id = ?', (listing_id,))
         conn.commit()
     conn.close()
-    return redirect(url_for('marketplace'))
+    return redirect(url_for('my_listings'))
 
 @app.route('/threads')
 @login_required
