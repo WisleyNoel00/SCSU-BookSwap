@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}OwlSwap — New Listing{% endblock %}
+
+{% block content %}
+<div class="auth-page">
+  <div class="auth-card" style="max-width:460px">
+
+    <div class="auth-logo">
+      <div class="auth-logo-icon">📚</div>
+      <div class="auth-logo-text">New Listing</div>
+    </div>
+
+    <form method="POST" action="{{ url_for('new_listing') }}">
+      <div class="field">
+        <label>Title</label>
+        <input type="text" name="title" placeholder="e.g. Intro to Algorithms — CLRS 3rd Ed." required />
+      </div>
+      <div class="field">
+        <label>Course</label>
+        <input type="text" name="course" placeholder="e.g. CS 305" required />
+      </div>
+      <div class="field">
+        <label>Department</label>
+        <select name="dept" required style="width:100%;padding:10px 12px;border:1px solid #cdd4e0;border-radius:6px;font-size:13px;font-family:'DM Sans',sans-serif;background:white;">
+          <option value="">Select department...</option>
+          <option value="cs">CS &amp; IT</option>
+          <option value="bio">Biology</option>
+          <option value="math">Mathematics</option>
+          <option value="psy">Psychology</option>
+          <option value="bus">Business</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Category</label>
+        <select name="category" required style="width:100%;padding:10px 12px;border:1px solid #cdd4e0;border-radius:6px;font-size:13px;font-family:'DM Sans',sans-serif;background:white;">
+          <option value="">Select category...</option>
+          <option value="textbook">Textbook</option>
+          <option value="supply">Supply / Equipment</option>
+          <option value="notes">Notes</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Listing Type</label>
+        <select name="type" required style="width:100%;padding:10px 12px;border:1px solid #cdd4e0;border-radius:6px;font-size:13px;font-family:'DM Sans',sans-serif;background:white;">
+          <option value="">Select type...</option>
+          <option value="sell">For Sale</option>
+          <option value="trade">For Trade</option>
+          <option value="free">Free</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Price (write "Trade" or "Free" if not selling)</label>
+        <input type="text" name="price" placeholder="e.g. $35 or Trade or Free" required />
+      </div>
+      <div class="field">
+        <label>Emoji Icon</label>
+        <input type="text" name="emoji" placeholder="📚" value="📚" maxlength="2" />
+      </div>
+      <button type="submit" class="auth-submit">Post Listing</button>
+    </form>
+
+    <div class="auth-footer" style="margin-top:14px">
+      <a href="{{ url_for('marketplace') }}">← Back to Marketplace</a>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

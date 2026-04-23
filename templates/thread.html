@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}OwlSwap — {{ thread.title }}{% endblock %}
+
+{% block content %}
+<div class="thread-layout">
+
+  <main class="thread-main">
+    <a href="{{ url_for('threads') }}" class="thread-back">← Back to Threads</a>
+
+    <div class="thread-topbar">
+      <div>
+        <div class="thread-title">{{ thread.title }}</div>
+        <div class="thread-meta">
+          Posted by {{ thread.username }} · {{ thread.course }} ·
+          {{ posts|length }} repl{{ 'y' if posts|length == 1 else 'ies' }}
+        </div>
+      </div>
+      <a href="{{ url_for('new_thread') }}">
+        <button class="btn-blue">+ New Thread</button>
+      </a>
+    </div>
+
+    {% for post in posts %}
+      <div class="post" id="post-{{ post.id }}">
+        <div class="post-header">
+          <div class="avatar {% if loop.first %}avatar-gold{% endif %}">
+            {{ post.username[:2].upper() }}
+          </div>
+          <div>
+            <div class="post-user">
+              {{ post.username }}
+              {% if loop.first %}<span class="op-badge">OP</span>{% endif %}
+            </div>
+            <div class="post-time">{{ post.created_at }}</div>
+          </div>
+        </div>
+        <div class="post-body">{{ post.body }}</div>
+        <div class="post-actions">
+          <button class="post-action" onclick="document.getElementById('reply-area').focus()">Reply</button>
+          {% if post.user_id == session.user_id %}
+            <form method="POST" action="{{ url_for('delete_post', post_id=post.id) }}"
+                  style="display:inline"
+                  onsubmit="return confirm('Delete this post?')">
+              <button type="submit" class="post-action post-action-delete">Delete</button>
+            </form>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+
+    <form method="POST" action="{{ url_for('thread', thread_id=thread.id) }}">
+      <div class="reply-box">
+        <textarea class="reply-input" id="reply-area" name="body" placeholder="Write a reply..."></textarea>
+        <div class="reply-footer">
+          <button type="submit" class="btn-blue">Post Reply</button>
+        </div>
+      </div>
+    </form>
+  </main>
+
+  <aside class="listings-panel">
+    <div class="panel-title">Related Listings</div>
+    {% for listing in related %}
+      <a href="{{ url_for('marketplace') }}" style="text-decoration:none">
+        <div class="side-listing">
+          <div class="side-listing-icon">{{ listing.emoji }}</div>
+          <div class="side-listing-name">{{ listing.title }}</div>
+          <div class="side-listing-price">{{ listing.price }}</div>
+          <span class="badge badge-{{ listing.type }}">{{ listing.type|capitalize }}</span>
+        </div>
+      </a>
+    {% else %}
+      <p style="font-size:12px;color:#888">No related listings yet.</p>
+    {% endfor %}
+  </aside>
+
+</div>
+{% endblock %}

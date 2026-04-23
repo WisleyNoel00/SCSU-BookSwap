@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block title %}OwlSwap — Threads{% endblock %}
+ 
+{% block content %}
+<div class="marketplace-layout">
+ 
+  <aside class="sidebar">
+    <div class="sidebar-section">Browse</div>
+    <a href="{{ url_for('marketplace') }}" class="sidebar-item">Marketplace</a>
+    <a href="{{ url_for('threads') }}" class="sidebar-item active">
+      <div class="sidebar-dot"></div> All Threads
+    </a>
+    <div style="padding:12px 16px;">
+      <a href="{{ url_for('new_thread') }}">
+        <button class="btn-blue" style="width:100%">+ New Thread</button>
+      </a>
+    </div>
+  </aside>
+ 
+  <main class="main-content">
+    <div class="main-header">
+      <span class="main-title">Discussion Threads</span>
+      <a href="{{ url_for('new_thread') }}">
+        <button class="btn-blue">+ New Thread</button>
+      </a>
+    </div>
+ 
+    {% for thread in threads %}
+      <a href="{{ url_for('thread', thread_id=thread.id) }}" style="text-decoration:none">
+        <div class="post" style="margin-bottom:10px;cursor:pointer;transition:box-shadow 0.2s;"
+             onmouseover="this.style.boxShadow='0 4px 16px rgba(26,58,107,0.1)'"
+             onmouseout="this.style.boxShadow='none'">
+          <div class="thread-title" style="font-size:15px;margin-bottom:4px">{{ thread.title }}</div>
+          <div class="thread-meta">
+            Posted by {{ thread.username }} · {{ thread.course }} ·
+            {{ thread.reply_count }} repl{{ 'y' if thread.reply_count == 1 else 'ies' }}
+          </div>
+        </div>
+      </a>
+    {% else %}
+      <p style="color:#888;font-size:14px;padding:20px 0">
+        No threads yet.
+        <a href="{{ url_for('new_thread') }}" style="color:#1a3a6b;font-weight:500">Start the first one →</a>
+      </p>
+    {% endfor %}
+  </main>
+ 
+</div>
+{% endblock %}

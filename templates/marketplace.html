@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}OwlSwap — Marketplace{% endblock %}
+
+{% block content %}
+<div class="marketplace-layout">
+
+  <aside class="sidebar">
+    <div class="sidebar-section">Departments</div>
+    {% for dept_key, dept_label in [('all','All Listings'),('cs','CS & IT'),('bio','Biology'),('math','Mathematics'),('psy','Psychology'),('bus','Business')] %}
+      <a href="{{ url_for('marketplace', dept=dept_key, type=active_type, category=active_category, search=search) }}"
+         class="sidebar-item {% if active_dept == dept_key %}active{% endif %}">
+        {% if active_dept == dept_key %}<div class="sidebar-dot"></div>{% endif %}
+        {{ dept_label }}
+      </a>
+    {% endfor %}
+
+    <div class="sidebar-section" style="margin-top:12px">Type</div>
+    {% for type_key, type_label in [('sell','For Sale'),('trade','For Trade'),('free','Free')] %}
+      <a href="{{ url_for('marketplace', dept=active_dept, type=type_key if active_type != type_key else 'all', category=active_category, search=search) }}"
+         class="sidebar-item {% if active_type == type_key %}active{% endif %}">
+        {{ type_label }}
+      </a>
+    {% endfor %}
+
+    <a href="{{ url_for('new_listing') }}">
+      <button class="btn-blue sidebar-new-btn">+ New Listing</button>
+    </a>
+  </aside>
+
+  <main class="main-content">
+    <div class="main-header">
+      <span class="main-title">All Listings</span>
+      <form method="GET" action="{{ url_for('marketplace') }}" style="display:flex;align-items:center;">
+        <input type="hidden" name="dept" value="{{ active_dept }}" />
+        <input type="hidden" name="type" value="{{ active_type }}" />
+        <input type="hidden" name="category" value="{{ active_category }}" />
+        <div class="search-bar">
+          <span>🔍</span>
+          <input type="text" name="search" value="{{ search }}" placeholder="Search materials..." />
+        </div>
+      </form>
+    </div>
+
+    <div class="tab-bar">
+      {% for cat_key, cat_label in [('all','All'),('textbook','Textbooks'),('supply','Supplies'),('notes','Notes')] %}
+        <a href="{{ url_for('marketplace', dept=active_dept, type=active_type, category=cat_key, search=search) }}"
+           class="tab-item {% if active_category == cat_key %}active{% endif %}">{{ cat_label }}</a>
+      {% endfor %}
+      <a href="{{ url_for('threads') }}" class="tab-item">Discuss</a>
+    </div>
+
+    <div class="card-grid">
+      {% for listing in listings %}
+        <div class="listing-card">
+          <div class="listing-img">{{ listing.emoji }}</div>
+          <div class="listing-title">{{ listing.title }}</div>
+          <div class="listing-course">{{ listing.course }}</div>
+          <div class="listing-footer">
+            <span class="listing-price">{{ listing.price }}</span>
+            <span class="badge badge-{{ listing.type }}">{{ listing.type|capitalize }}</span>
+          </div>
+        </div>
+      {% else %}
+        <p style="color:#888;font-size:14px;grid-column:1/-1;padding:20px 0">
+          No listings yet.
+          <a href="{{ url_for('new_listing') }}" style="color:#1a3a6b;font-weight:500">Create the first one →</a>
+        </p>
+      {% endfor %}
+    </div>
+  </main>
+
+</div>
+{% endblock %}
